@@ -15,7 +15,7 @@ public class DifferentialDriveDynamics {
     public double solveMaxVelocity(double voltage, double curvature) {
         double leftFreeSpeed = leftMotor.solveFreeSpeed(voltage);
         double rightFreeSpeed = rightMotor.solveFreeSpeed(voltage);
-        return Math.min(leftFreeSpeed / (1 - curvature), rightFreeSpeed / (1 + curvature)) / 2;
+        return Math.min(leftFreeSpeed / (1 - curvature * wheelbaseRadius), rightFreeSpeed / (1 + curvature * wheelbaseRadius)) / 2;
     }
 
     public double solveMaxAcceleration(double absVoltage, double velocity, double curvature, double dcurvature) {
