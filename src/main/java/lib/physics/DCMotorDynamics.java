@@ -1,7 +1,7 @@
 package lib.physics;
 
 public class DCMotorDynamics {
-    private double ks; // voltages needed to break stiction (V)
+    private double ks; // voltage needed to break stiction (V)
     private double kt; // 
     private double kv; //
 

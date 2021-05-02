@@ -7,15 +7,28 @@ public class DifferentialDriveDynamics {
     private double wheelRadius; // Radius of the wheels (m)
     private double mass; // Mass of the robot (kg)
     private double moi; // Moment of inertia of the robot (kg * m^2)
+    private double cof; // Coefficient of friction of the wheels (dimensionless)
 
-    public DifferentialDriveDynamics() {
-        
+    public DifferentialDriveDynamics(DCMotorDynamics leftMotor,
+            DCMotorDynamics rightMotor,
+            double wheelbaseRadius,
+            double wheelRadius,
+            double mass,
+            double moi,
+            double cof) {
+        this.leftMotor = leftMotor;
+        this.rightMotor = rightMotor;
+        this.wheelbaseRadius = wheelbaseRadius;
+        this.wheelRadius = wheelRadius;
+        this.mass = mass;
+        this.moi = moi;
+        this.cof = cof;
     }
 
     public double solveMaxVelocity(double voltage, double curvature) {
-        double leftFreeSpeed = leftMotor.solveFreeSpeed(voltage);
-        double rightFreeSpeed = rightMotor.solveFreeSpeed(voltage);
-        return Math.min(leftFreeSpeed / (1 - curvature), rightFreeSpeed / (1 + curvature)) / 2;
+
+        double tractionLimitedVelocity = Math.sqrt(cof * mass / curvature);
+
     }
 
     public double solveMaxAcceleration(double absVoltage, double velocity, double curvature, double dcurvature) {
@@ -28,8 +41,8 @@ public class DifferentialDriveDynamics {
 
     private double solveAcceleration(double absVoltage, double velocity, double curvature, double dcurvature, double sign) {
         // Add derivation here, explanation of these equations are in the software channel on slack
-        double leftMaxTorque = leftMotor.solveTorque(absVoltage * sign, velocity);
-        double rightMaxTorque = rightMotor.solveTorque(absVoltage * sign, velocity);
+        double leftMaxTorque = leftMotor.solveTorque(absVoltage * sign, velocity * (1 - curvature * wheelbaseRadius));
+        double rightMaxTorque = rightMotor.solveTorque(absVoltage * sign, velocity * (1 + curvature * wheelbaseRadius));
         double leftAtRightMax = (rightMaxTorque * (wheelbaseRadius / moi - curvature / mass) - 
                 velocity * velocity * dcurvature * wheelRadius) / (wheelbaseRadius / moi + curvature / mass);
         double rightAtLeftMax = (velocity * velocity * dcurvature * wheelRadius + leftMaxTorque *
