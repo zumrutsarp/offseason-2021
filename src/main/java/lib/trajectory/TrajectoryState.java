@@ -1,12 +1,16 @@
 package lib.trajectory;
 
-import lib.geometry.Pose2d;
+import lib.math.*;
+import lib.physics.DifferentialDrive.*
 
 public class TrajectoryState {
-    public double t;
-    public double d;
-    public double v;
-    public double a;
-    public Pose2d pose;
-    public double curvature;
+    private Pose pose;
+    private ChassisState velocity;
+    private ChassisState acceleration;
+
+    public TrajectoryState(Pose pose, ChassisState velocity, ChassisState acceleration) {
+        this.pose = pose;
+        this.velocity = velocity;
+        this.acceleration = acceleration;
+    }
 }

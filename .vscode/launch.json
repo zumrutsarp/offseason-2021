@@ -4,18 +4,52 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
-
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - BobTrajectoryApp",
+      "request": "launch",
+      "mainClass": "frc.com.team319.ui.BobTrajectoryApp",
+      "projectName": "InfiniteRechargeAtHome"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - Main",
+      "request": "launch",
+      "mainClass": "frc.com.team319.io.Main",
+      "projectName": "InfiniteRechargeAtHome"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - BobRunner",
+      "request": "launch",
+      "mainClass": "frc.robot.BobRunner",
+      "projectName": "InfiniteRechargeAtHome"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - Camera",
+      "request": "launch",
+      "mainClass": "frc.robot.drivetrain.Camera",
+      "projectName": "InfiniteRecharge"
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - BobRunner",
+      "request": "launch",
+      "mainClass": "frc.robot.BobRunner",
+      "projectName": "InfiniteRecharge"
+    },
     {
       "type": "wpilib",
       "name": "WPILib Desktop Debug",
       "request": "launch",
-      "desktop": true,
+      "desktop": true
     },
     {
       "type": "wpilib",
       "name": "WPILib roboRIO Debug",
       "request": "launch",
-      "desktop": false,
+      "desktop": false
     }
   ]
 }
