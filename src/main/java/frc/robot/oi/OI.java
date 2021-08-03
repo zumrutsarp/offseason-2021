@@ -21,8 +21,6 @@ import frc.robot.command_groups.LoadMagazineCG;
 import frc.robot.command_groups.ShootCG;
 import frc.robot.command_groups.StartIntakeCG;
 import frc.robot.command_groups.StopIntakeCG;
-import frc.robot.flashlight.commands.flashlightOff;
-import frc.robot.flashlight.commands.flashlightOn;
 import frc.robot.shooter.commands.SpinUpBlueZone;
 import frc.robot.shooter.commands.SpinUpGreenZone;
 import frc.robot.shooter.commands.SpinUpRedZone;
@@ -85,9 +83,6 @@ public class OI {
     new JoystickButton(driver, ControllerMap.X_BOX_LB).whenReleased(new StopShooter());
 
     // new JoystickButton(operator, ControllerMap.PS4_CIRCLE).whenPressed(new StartIntakeCG(true));
-
-    new JoystickButton(driver, ControllerMap.X_BOX_A).whenPressed(new flashlightOff());
-    new JoystickButton(driver, ControllerMap.X_BOX_A).whenReleased(new flashlightOn());
 }
 
   /**

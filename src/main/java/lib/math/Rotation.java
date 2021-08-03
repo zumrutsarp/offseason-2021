@@ -8,6 +8,10 @@ public class Rotation {
         this.theta = theta;
     }
 
+    public Rotation(double x, double y) {
+        this.theta = Math.atan2(y, x);
+    }
+
     public Rotation plus(Rotation rotation) {
         return new Rotation(theta + rotation.radians());
     }

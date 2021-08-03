@@ -1,7 +1,7 @@
 package lib.trajectory;
 
 import lib.math.*;
-import lib.physics.DifferentialDrive.*
+import lib.physics.DifferentialDrive.*;
 
 public class TrajectoryState {
     private Pose pose;

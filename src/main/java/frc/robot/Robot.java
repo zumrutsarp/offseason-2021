@@ -28,7 +28,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.drivetrain.Drivetrain;
 // import frc.robot.command_groups.AutoRoutines;
 // import frc.robot.command_groups.AutoRoutines.AutoMode;
-import frc.robot.drivetrain.StateEstimator;
 import frc.robot.drivetrain.commands.PathFollower;
 // import frc.robot.drivetrain.commands.AutoVisionDriving;
 // import frc.robot.drivetrain.commands.ManualVisionDriving;
@@ -49,7 +48,6 @@ import frc.paths.*;
 public class Robot extends TimedRobot {
   Command autonomousCommand;
   private final Compressor compressor = new Compressor();
-  private StateEstimator estimator;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -173,7 +171,6 @@ public class Robot extends TimedRobot {
     }
 
     Limelight.getLimelight().setAimingMode();
-    estimator = new StateEstimator(Drivetrain.getDrivetrain().getLeftPosition(),Drivetrain.getDrivetrain().getLeftPosition(),Math.toRadians(Drivetrain.getDrivetrain().getHeading()),0,0,0);
   }
 
   /**
@@ -192,10 +189,6 @@ public class Robot extends TimedRobot {
     // SmartDashboard.putNumber("Throttle", OI.getOI().getThrottle());
     // SmartDashboard.putNumber("rpm", getDrivetrain().getFrontCamera().calculateRPM());
     // SmartDashboard.putNumber("Distance", getDrivetrain().getFrontCamera().calculateDistanceToTarget());
-    double[] pose = estimator.update(Drivetrain.getDrivetrain().getLeftPosition(),Drivetrain.getDrivetrain().getLeftPosition(),Math.toRadians(Drivetrain.getDrivetrain().getHeading()));
-    SmartDashboard.putNumber("x", pose[0]);
-    SmartDashboard.putNumber("y", pose[1]);
-    SmartDashboard.putNumber("theta", pose[2]);
   }
 
   /**
@@ -203,6 +196,5 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
-    
   }
 }
